@@ -1,4 +1,4 @@
-# Terraform Infrastructure Setup README
+# Terraform-State-Management
 
 This Terraform configuration file sets up an AWS environment with specific configurations for secure and controlled infrastructure deployment. It includes the creation of an S3 bucket, enabling versioning and server-side encryption, blocking public access, and creating a DynamoDB table for locking purposes.
 
