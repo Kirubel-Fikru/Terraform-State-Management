@@ -4,7 +4,7 @@ provider "aws" {
 
 # create an S3 bucket by using the aws_s3_bucket resource:
 resource "aws_s3_bucket" "terraform_state" {
-    bucket = "terraform-key-for-backend"
+    bucket = "terraform-state-for-backend-key"
     # Prevent accidental deletion of this S3 bucket
     lifecycle {
         prevent_destroy = true 
@@ -29,3 +29,11 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "default" {
     }
 }
 
+# Explicitly block all public access to the S3 bucket
+resource "aws_s3_bucket_public_access_block" "public_access" {
+    bucket = aws_s3_bucket.terraform_state.id
+    block_public_acls = true
+    block_public_policy = true
+    ignore_public_acls = true
+    restrict_public_buckets = true
+}
